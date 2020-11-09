@@ -1,9 +1,8 @@
 // =======================================================
-// ENGG1000 - Computing Technical Stream
+// ENGG1000 - R2R Group 21
 // Motor Controller
 // Written by Martin Le November 2020
 // Controls motors via an H Bridge
-// Code structure referenced from course lecture notes 
 // ======================================================= 
     
 // -------------------------------------------------------
@@ -57,23 +56,23 @@ char receiveCommand(char command){
 // Function: Update Direction
 // -------------------------------------------------------
 char updateDirection(char command, char currentDirection){
-    // if user inputs f, the currentDirection is forwards
-    if (command == 'f'){
+    // if user inputs w, the currentDirection is forwards
+    if (command == 'w'){
       currentDirection = 'f';
       Serial.println("Forwards");
     }
-    // if user inputs b, the currentDirection is backwards
-    else if (command == 'b') {
+    // if user inputs s, the currentDirection is backwards
+    else if (command == 's') {
       currentDirection = 'b';
       Serial.println("Backwards");
     }
-    // if user inputs l, the currentDirection is left
-    else if (command == 'l') {
+    // if user inputs a, the currentDirection is left
+    else if (command == 'a') {
       currentDirection = 'l';
       Serial.println("Turn Left");
     }
-    // if user inputs r, the currentDirection is right
-    else if (command == 'r') {
+    // if user inputs d, the currentDirection is right
+    else if (command == 'd') {
       currentDirection = 'r';
       Serial.println("Turn Right");
     }
@@ -160,7 +159,7 @@ void setMotorPins(char currentDirection, int pwmDutyCycle){
 
 void helpPrompt() {
     Serial.println("Welcome to the help desk!");
-    Serial.println("---------------------------");
+    Serial.println("-------------------------------------");
     Serial.println("Directional Inputs");
     Serial.println("w - move forward");
     Serial.println("a - move left");
@@ -174,10 +173,11 @@ void helpPrompt() {
     Serial.println("3 - set speed to 30%");
     Serial.println("4 - set speed to 40%");
     Serial.println("5 - set speed to 50%");
-    Serial.println("---------------------------");
+    Serial.println("-------------------------------------");
     Serial.println("Functional Inputs");
     Serial.println("r - return autonomously");
     Serial.println("x - terminate the program");
+    Serial.println("-------------------------------------");
 }
 
 
@@ -190,6 +190,8 @@ void setup() {
   Serial.println("Initialising ...");
   initializeMotorPins();
   Serial.println("Initialisation complete");
+  Serial.println("-------------------------------------");
+  helpPrompt();
 }
 
 void loop() {
@@ -219,7 +221,7 @@ void loop() {
   }
   
   // Terminate the program
- Serial.println("bye");
+ Serial.println("The robot will not be taking any more requests");
  while(true);
 
 }
