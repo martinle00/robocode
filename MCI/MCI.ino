@@ -154,6 +154,32 @@ void setMotorPins(char currentDirection, int pwmDutyCycle){
     }  
 }
 
+// -------------------------------------------------------
+// Function: Help Information
+// -------------------------------------------------------
+
+void helpPrompt() {
+    Serial.println("Welcome to the help desk!");
+    Serial.println("---------------------------");
+    Serial.println("Directional Inputs");
+    Serial.println("w - move forward");
+    Serial.println("a - move left");
+    Serial.println("s - move right");
+    Serial.println("d - move backwards");
+    Serial.println("---------------------------");
+    Serial.println("Speed Inputs");
+    Serial.println("0 - set speed to 0");
+    Serial.println("1 - set speed to 10%");
+    Serial.println("2 - set speed to 20%");
+    Serial.println("3 - set speed to 30%");
+    Serial.println("4 - set speed to 40%");
+    Serial.println("5 - set speed to 50%");
+    Serial.println("---------------------------");
+    Serial.println("Functional Inputs");
+    Serial.println("r - return autonomously");
+    Serial.println("x - terminate the program");
+}
+
 
 void setup() {
   Serial.begin(9600);
@@ -187,6 +213,9 @@ void loop() {
     // Was this an exit command
     if (command == 'x') keyboardControl = false;
     
+    if (command == 'h') {
+        helpPrompt();
+    }
   }
   
   // Terminate the program
